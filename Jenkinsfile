@@ -1,38 +1,26 @@
 pipeline {
-  environment {
-    imagename = "kevalnagda/flaskapp"
-    registryCredential = 'kevalnagda'
-    dockerImage = ''
-  }
   agent any
+  tools {nodejs "node"}
+    
   stages {
-    stage('Cloning Git') {
+        
+    stage('Git') {
       steps {
-        git([url: 'https://github.com/srglnjmb/ICSI450-project.git', branch: 'main'])
+        git 'https://github.com/srglnjmb/ICSI450-project.git'
       }
     }
-    stage('Building image') {
-      steps{
-        script {
-          dockerImage = docker.build imagename
-        }
+     
+    stage('Build') {
+      steps {
+        sh 'npm install'
+        sh 'npm run build'
       }
-    }
-    stage('Deploy Image') {
-      steps{
-        script {
-          docker.withRegistry( '', registryCredential ) {
-            dockerImage.push("$BUILD_NUMBER")
-             dockerImage.push('latest')
-          }
-        }
-      }
-    }
-    stage('Remove Unused docker image') {
-      steps{a
-        sh "docker rmi $imagename:$BUILD_NUMBER"
-         sh "docker rmi $imagename:latest"
- 
+    }  
+    
+            
+    stage('Test') {
+      steps {
+        sh 'npm start'
       }
     }
   }
