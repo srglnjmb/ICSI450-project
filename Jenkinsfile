@@ -1,7 +1,6 @@
 pipeline {
   agent any
-  tools {nodejs "node"}
-    
+
   stages {
         
     stage('Git') {
@@ -10,16 +9,9 @@ pipeline {
       }
     }
      
-    stage('Build') {
+   stage('Build') {
       steps {
-        sh 'npm install'
-        sh 'npm run build'
-      }
-    }  
-    
-    stage('Test') {
-      steps {
-        sh 'npm start'
+        sh 'docker build -t my-image .'
       }
     }
   }
