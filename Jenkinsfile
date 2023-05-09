@@ -16,6 +16,7 @@ pipeline {
               }
               sh 'sudo docker build -t icsi450-project:latest .'
               sh 'sudo docker push srglnjmb/icsi450-project:latest'
+              sh 'sudo docker-compose pull'
             }
         }
     }
