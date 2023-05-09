@@ -15,8 +15,8 @@ pipeline {
                 sh 'sudo docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
               }
               sh 'sudo docker build -t icsi450-project:latest .'
-              sh 'sudo docker push srglnjmb/icsi450-project:latest'
-              sh 'sudo docker-compose pull'
+              sh 'sudo docker run -p 3000:3000 -d --name icsi450-project-service icsi450-project:latest'
+              // sh 'sudo docker push srglnjmb/icsi450-project:latest'
             }
         }
     }
