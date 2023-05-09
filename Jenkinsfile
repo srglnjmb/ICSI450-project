@@ -1,5 +1,6 @@
 pipeline {
   agent any
+
   stages {
         
     stage('Git') {
@@ -8,10 +9,10 @@ pipeline {
       }
     }
      
-   stage('Build') {
-      steps {
-        sh 'docker build -t my-image .'
-      }
-    }
+  //  stage('Build') {
+  //     steps {
+  //       sh 'docker build -t nextapp .'
+  //     }
+  //   }
   }
 }
