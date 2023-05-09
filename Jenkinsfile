@@ -1,20 +1,11 @@
 pipeline {
-  agent any
-  environment {
-    GIT_HOME = tool 'GIT'
-  }
-  stages {
-        
-    stage('Git repository') {
-      steps {
-        git 'https://github.com/srglnjmb/ICSI450-project.git'
-      }
+    agent any
+    
+    stages {
+        stage('Clone repository') {
+            steps {
+                git branch: 'master', url: 'https://github.com/your-git-repo.git'
+            }
+        }
     }
-     
-  //  stage('Build') {
-  //     steps {
-  //       sh 'docker build -t nextapp .'
-  //     }
-  //   }
-  }
 }
