@@ -1,0 +1,7 @@
+version: "4.1"
+services:
+  my_app:
+    image: srglnjmb/icsi450-project:latest
+    restart: always
+    ports:
+      - "3000:3000"
