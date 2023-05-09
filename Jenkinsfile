@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Build Docker image') {
             steps {
-                sh 'docker build -t srglnjmb/icsi450-project .'
+              sh 'docker build -t nextjs-app:latest .'
             }
         }
     }
