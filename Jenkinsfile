@@ -11,7 +11,11 @@ pipeline {
         }
         stage('Build Docker image') {
             steps {
-              sh 'sudo docker build -t nextjs-app:latest .'
+              withCredentials([usernamePassword(credentialsId: 'docker-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+              }
+              sh 'sudo docker build -t icsi450-project:latest .'
+              sh 'docker push srglnjmb/icsi450-project:latest'
             }
         }
     }
