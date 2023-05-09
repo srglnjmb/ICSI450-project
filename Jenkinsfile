@@ -17,10 +17,10 @@ pipeline {
           sh 'sudo docker build -t icsi450-project:latest .'
         }
       }
-      stage('Deploy image') {
+      stage('Deploy Docker image') {
         steps {
           script {
-            def containerExists = sh(script: 'docker ps -a | grep icsi450-project-service', returnStatus: true) == 0
+            def containerExists = sh(script: 'sudo docker ps -a | grep icsi450-project-service', returnStatus: true) == 0
             if (containerExists) {
               sh 'sudo docker stop icsi450-project-service'
               sh 'sudo docker rm icsi450-project-service'
